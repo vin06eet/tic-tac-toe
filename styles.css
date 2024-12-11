@@ -48,9 +48,9 @@
 .winning-line {
     position: absolute;
     width: 100%;
-    height: 5px; /* Adjust thickness */
-    background-color: red; /* Change color as needed */
-    visibility: hidden; /* Initially hidden */
-    transition: visibility 0s, opacity 0.5s linear; /* Smooth transition */
-    opacity: 0; /* Initially transparent */
+    height: 5px; 
+    background-color: red;
+    visibility: hidden;
+    transition: visibility 0s, opacity 0.5s linear;
+    opacity: 0;
 }

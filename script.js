@@ -13,7 +13,6 @@ const popup = document.getElementById('popup');
 const closePopupButton = document.getElementById('closePopup');
 let conditionNumber = 0
 
-
 const winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -31,12 +30,30 @@ const checkForWin = () => {
         if (gameState[condition[0]] == gameState[condition[1]] &&
             gameState[condition[1]] == gameState[condition[2]] &&
             gameState[condition[0]] != '') {
-            return condition; // Return the winning condition
+            return condition; 
         }
     }
-    return null; // No winner
+    return null; 
 }
 
+const showWinCombination = ()=>{
+    const winCombination = checkForWin();
+    if (winCombination) {
+        const winBox1 = document.querySelector(`.box${winCombination[0]+1}`);
+        const winBox2 = document.querySelector(`.box${winCombination[1]+1}`);
+        const winBox3 = document.querySelector(`.box${winCombination[2]+1}`);
+        winBox1.classList.replace('bg-color4', 'bg-color3')
+        winBox2.classList.replace('bg-color4', 'bg-color3')
+        winBox3.classList.replace('bg-color4', 'bg-color3')
+    }
+}
+
+const restoreBgColor = ()=>{
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box =>{
+        box.classList.replace('bg-color3', 'bg-color4')
+    })
+}
 
 const showPopup = (message) => {
     const messageElement = popup.querySelector('p');
@@ -44,41 +61,13 @@ const showPopup = (message) => {
         messageElement.textContent = message
     else
     messageElement.textContent = message + ' wins!';
-    popup.style.visibility = 'visible'; // Show the popup
+    popup.style.visibility = 'visible';
 }
 
 const closePopup = () => {
-    popup.style.visibility = 'hidden'; // Hide the popup
+    popup.style.visibility = 'hidden'; 
 }
 
-const drawWinningLine = (condition) => {
-    const winningLine = document.getElementById('winningLine');
-    const boxSize = boxes[0].clientWidth; // Assuming all boxes are the same size
-    const boardRect = document.querySelector('.board').getBoundingClientRect(); // Get the board's position
-
-    if (condition[0] === 0 || condition[0] === 3 || condition[0] === 6) { // Horizontal
-        winningLine.style.top = `${boardRect.top + (condition[0] < 3 ? 0 : condition[0] < 6 ? boxSize : 2 * boxSize) + boxSize / 2}px`;
-        winningLine.style.transform = 'translateY(-50%)';
-        winningLine.style.width = `${boxSize * 3}px`;
-    } else if (condition[0] === 0 || condition[0] === 1 || condition[0] === 2) { // Vertical
-        winningLine.style.left = `${boardRect.left + (condition[0] % 3) * boxSize + boxSize / 2}px`;
-        winningLine.style.transform = 'translateX(-50%)';
-        winningLine.style.height = `${boxSize * 3}px`;
-    } else if (condition[0] === 0 || condition[0] === 4 || condition[0] === 8) { // Diagonal
-        winningLine.style.left = `${boardRect.left}px`;
-        winningLine.style.top = `${boardRect.top}px`;
-        winningLine.style.transform = 'rotate(45deg)';
-        winningLine.style.width = `${Math.sqrt(2) * boxSize * 3}px`;
-    } else if (condition[0] === 2 || condition[0] === 4 || condition[0] === 6) { // Diagonal
-        winningLine.style.left = `${boardRect.left + boxSize * 2}px`;
-        winningLine.style.top = `${boardRect.top}px`;
-        winningLine.style.transform = 'rotate(-45deg)';
-        winningLine.style.width = `${Math.sqrt(2) * boxSize * 3}px`;
-    }
-
-    winningLine.style.visibility = 'visible'; // Show the line
-    winningLine.style.opacity = 1; // Make it visible
-}
 
 const onClickOfBox = (event)=>{
     const clickedBox = event.target
@@ -96,7 +85,7 @@ const onClickOfBox = (event)=>{
         gameActive = false
         const winningPlayer = currentPlayer == 'X' ? 'O':'X'
         showPopup(winningPlayer)
-        drawWinningLine(gameWon)
+        showWinCombination()
         winSound.play()
     }
     if(occupied == 9){
@@ -117,9 +106,9 @@ const resetGame = (event) => {
     if(resetButton.textContent=='New Game'){
         resetButton.innerHTML = 'Reset'
     }
-    verdictText.innerHTML = 'Verdict : Pending'
+    restoreBgColor()
 }
 
 boxes.forEach(box => box.addEventListener('click', onClickOfBox))
 resetButton.addEventListener('click', resetGame)
-closePopupButton.addEventListener('click', closePopup); // Add event listener for closing the popup
+closePopupButton.addEventListener('click', closePopup);
