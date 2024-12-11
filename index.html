@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="styles.css">
     <title>tic tac toe</title>
 </head>
 <body class="bg-color5 h-screen">
@@ -17,8 +18,6 @@
     <div class="flex flex-col justify-start items-center h-5/6">
         <div class="h-1/6">
             <h1 class="text-2xl text-color1">player1 vs player2</h1>
-            <br>
-            <h1 class="verdict text-2xl text-color1 text-center">Verdict : Pending</h1>
         </div>
         <div class="flex flex-col justify-start items-center space-y-12 h-5/6">
             <div class=" boxes flex flex-wrap w-[352px] gap-2 h-[352px]">
@@ -34,6 +33,13 @@
             </div>
             <button class="restart w-32 bg-color1 text-color4 h-12 border-none rounded-lg">Reset</button>
     </div>
+    </div>
+    <div id="popup">
+        <div class="popup-content">
+            <h1>Game Over...</h1>
+            <p></p> 
+            <button class="close-popup" id="closePopup">Close</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
