@@ -89,7 +89,7 @@ const onClickOfBox = (event)=>{
     if(gameWon){
         resetButton.innerHTML = 'New Game'
         gameActive = false
-        const winningPlayer = currentPlayer == 'X' ? 'O':'X'
+        const winningPlayer = currentPlayer == 'X' ? player2:player1
         showPopup(winningPlayer)
         showWinCombination()
         winSound.play()
