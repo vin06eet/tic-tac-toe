@@ -12,6 +12,12 @@ let occupied = 0
 const popup = document.getElementById('popup');
 const closePopupButton = document.getElementById('closePopup');
 let conditionNumber = 0
+const edit = document.querySelector('.editIcon')
+const save = document.querySelector('#closeInputName')
+const playerName1 = document.querySelector('.playerName1')
+const playerName2 = document.querySelector('.playerName2')
+let player1 = 'X'
+let player2 = 'O'
 
 const winningConditions = [
     [0, 1, 2],
@@ -111,6 +117,26 @@ const resetGame = (event) => {
     restoreBgColor()
 }
 
+const openEditTab = (event) => {
+    const changeVisibilityOfTab = document.getElementById('inputName')
+    changeVisibilityOfTab.style.visibility = 'visible'
+}
+
+const closeEditTab = (event) => {
+    const changeVisibilityOfTab = document.getElementById('inputName')
+    changeVisibilityOfTab.style.visibility = 'hidden'
+    player1 = playerName1.value
+    player2 = playerName2.value
+    const playerNames = document.querySelector('.playerNames')
+    if(!player1.trim()) player1 = 'X'
+    if(!player2.trim()) player2 = 'O'
+    playerNames.textContent = player1 + ' vs ' + player2
+    playerName1.value = ''
+    playerName2.value = ''
+}
+
 boxes.forEach(box => box.addEventListener('click', onClickOfBox))
 resetButton.addEventListener('click', resetGame)
 closePopupButton.addEventListener('click', closePopup);
+edit.addEventListener('click', openEditTab)
+save.addEventListener('click', closeEditTab)

@@ -17,9 +17,13 @@
         <h1 class="text-center text-5xl font-bold p-4 text-color1">Tic Tac Toe</h1>
     </div>
     <div class="flex flex-col justify-start items-center h-5/6">
-        <div class="h-1/6">
-            <h1 class="text-2xl text-color1">X vs O   <button class="size-1">  <i class="fa-solid fa-pencil"></i></button></h1>
+        <div class="h-1/6 flex items-center justify-between">
+            <h1 class="playerNames text-2xl text-color1 p-8">X vs O</h1>
+            <button class="editIcon size-1 text-color2 hover:text-color3 focus:outline-none">
+                <i class="fa-solid fa-pencil"></i>
+            </button>
         </div>
+        
         <div class="flex flex-col justify-start items-center space-y-12 h-5/6">
             <div class=" boxes flex flex-wrap w-[352px] gap-2 h-[352px]">
                 <button class="box box1 w-28 h-28 bg-color4 border-none rounded-lg text-6xl text-color1"></button>
@@ -42,8 +46,13 @@
             <button class="close-popup" id="closePopup">Close</button>
         </div>
     </div>
-    <div>
-
+    <div id="inputName">
+        <div class="inputName-content">
+            <h1 class="mb-4">Enter Player Names</h1>
+            <input type="text" class="playerName1" placeholder="Player 1 (X)">
+            <input type="text" class="playerName2" placeholder="Player 2 (O)">
+            <button class="close-inputName" id="closeInputName">Save</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
