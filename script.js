@@ -88,9 +88,11 @@ const onClickOfBox = (event)=>{
         showWinCombination()
         winSound.play()
     }
-    if(occupied == 9){
-        tieSound.play()
-        showPopup('Tie!!!')
+    else{
+        if(occupied == 9){
+            tieSound.play()
+            showPopup('Tie!!!')
+        }
     }
 }
 
